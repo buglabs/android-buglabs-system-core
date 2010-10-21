@@ -164,9 +164,30 @@ int do_domainname(int nargs, char **args)
     return write_file("/proc/sys/kernel/domainname", args[1]);
 }
 
+/* In official Android (at least until 2.2) this is not implemented.
+ */
 int do_exec(int nargs, char **args)
 {
-    return -1;
+    /* first argument (arg[0]) is 'exec'. We do not need that.
+     * Instead we put all the remaining args into a string a call
+     * system()
+     */
+    int len = 0, i = 0;
+    for (i = 1; i < nargs; i++)
+      len += strlen(args[i]) + 1;
+
+    char all_args[len + 1];
+    all_args[0] = '\0';
+    for (i = 1; i < nargs; i++)
+    {
+      strcat(all_args, " ");
+      strcat(all_args, args[i]);
+    }
+    
+    /* blocks until the call is done */
+    system(all_args);
+
+    return 0;
 }
 
 int do_export(int nargs, char **args)
