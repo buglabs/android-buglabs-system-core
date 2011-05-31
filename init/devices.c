@@ -159,6 +159,11 @@ static struct perms_ devperms[] = {
     { "/dev/ts0710mux",     0640,   AID_RADIO,      AID_RADIO,      1 },
     { "/dev/ppp",           0660,   AID_RADIO,      AID_VPN,        0 },
     { "/dev/tun",           0640,   AID_VPN,        AID_VPN,        0 },
+    { "/dev/ttyACM0",       0660,   AID_RADIO,      AID_RADIO,      1 },
+    { "/dev/ttyACM2",       0660,   AID_SYSTEM,     AID_SYSTEM,     1 },
+    { "/dev/ttyACM1",       0660,   AID_RADIO,      AID_RADIO,      1 },
+    { "/dev/cdc-wdm0",      0660,   AID_SYSTEM,     AID_SYSTEM,     1 },
+    { "/dev/cdc-wdm1",      0660,   AID_SYSTEM,     AID_SYSTEM,     1 },
     { NULL, 0, 0, 0, 0 },
 };
 
